@@ -1,0 +1,44 @@
+﻿﻿@model WebApplication1.Models.ViewModels.Basket
+@{
+    ViewBag.Title = "Basket";
+}
+
+<h2>Корзина</h2>
+<table style="width:90%">
+    @if (Model.prodList.Count() > 0)
+    {
+        <tbody>
+            @foreach (var product in Model.prodList)
+            {
+                <tr class="text-center">
+                    <td>
+                        @product.product_name
+                        @{ Html.RenderAction("ProdPrice", new { product_id = product.product_id }); }
+                        @using (Html.BeginForm("RemoveFromBasket", "Home"))
+                        {
+                            @Html.Hidden("checkId", Model.check_id)
+                            @Html.Hidden("productId", product.product_id)
+                            <input type="submit" value="Удалить из корзины" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tbody>
+            @Html.ActionLink("Оплатить", "BuyProducts", "Home", new { guid = Model.check_id }, null)
+        </tbody>
+        using (Html.BeginForm("ClearBasket", "Home"))
+        {
+            @Html.Hidden("checkId", Model.check_id)
+            <input type="submit" value="Очистить корзину" />
+        }
+    }
+    else
+    {
+        <tr class="text-center">
+            <td>
+                Корзина пуста!
+            </td>
+        </tr>
+    }
+</table>

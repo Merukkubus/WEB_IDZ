@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8130ad8abad8462a87bfd96a787ffd7e" Name="Diagram1">
+        <EntityTypeShape EntityType="supermarketModel.cash_reg" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.cashier" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.check" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.company" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.discount_card" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.price" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.product_category" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.product_in_check" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.role" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarketModel.user" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="supermarketModel.Тип_оплаты" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.Кассир" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.FK_product_in_check_check" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.Скидочная_карта" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.FK_price_company" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.FK_user_discount_card" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.Цена" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.FK_product_in_check_product" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.Relationship4" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.FK_user_role" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarketModel.delivery" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

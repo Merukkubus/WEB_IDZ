@@ -1,0 +1,40 @@
+﻿﻿@using WebApplication1.Models
+@model List<WebApplication1.Models.Entities.user>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Пользователи</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Login
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                Card_id
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.role_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.card_id)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "EditUser", new { user_id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.ActionLink("Назад", "Index")

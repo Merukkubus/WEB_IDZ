@@ -1,0 +1,25 @@
+﻿﻿@using WebApplication1.Models
+@model List<WebApplication1.Models.Entities.product_category>
+@{
+    ViewBag.Title = "Catalog";
+}
+
+<h2>Каталог</h2>
+<form asp-controller="Home">
+    <p>
+        <input type="text" name="searchTerm" />
+        <input type="submit" value="Поиск" />
+    </p>
+</form>
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Добавить категорию", "CreateCategory", "", new { @class = "btn btn-success" })
+    }
+</p>
+@foreach (var category in Model)
+{
+    <div class="row">
+        <div class="col-md-4"><a href="@Url.Action("ProductsByCategory", "Home", new { categoryId = category.category_id })">@category.category_name</a></div>
+    </div>
+}

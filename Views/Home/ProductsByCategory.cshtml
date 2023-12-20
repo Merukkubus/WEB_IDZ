@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebApplication1.Models.Entities.product>
+
+@{
+    ViewBag.Title = "ProductsByCategory";
+}
+
+<h2>Товары в категории</h2>
+<form asp-controller="Home">
+    <p>
+        <input type="text" name="searchTerm" />
+        <input name="categoryId" type="hidden" value="@Model.First().category_id" />
+        <input type="submit" value="Поиск" />
+    </p>
+</form>
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create product", "CreateProduct", "", new { @class = "btn btn-success" })
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            product_id
+        </th>
+        <th>
+            product_name
+        </th>
+        <th>
+            price
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_name)
+            </td>
+            <td>
+                @{ Html.RenderAction("ProdPrice", new { product_id = item.product_id }); }
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Редактировать", "EditProduct", new { product_id = item.product_id }) |
+                    @Html.ActionLink("Удалить", "DeleteProduct", new { product_id = item.product_id })
+                </td>
+            }
+            @if (User.IsInRole("Participant"))
+            {
+                <td>
+                    <div class="btn add btn-primary" data-long="@item.product_id">
+                        <span>
+                            Купить
+                        </span>
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Назад", "Index")
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.add').click(function () {
+            var prodId = $(this).data('long');
+            AddToBasket(prodId);
+        });
+    });
+
+    function AddToBasket(prodId) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddToBasket", "Home")',
+            data: { prodId: prodId },
+            success: function (data) {
+                alert('Добавлено в корзину');
+            },
+            error: function () {
+                alert('Произошла ошибка при добавлении в корзину' + errorThrown);
+            }
+        });
+    }
+</script>
