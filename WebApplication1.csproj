@@ -279,6 +279,8 @@
     <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Views\Home\EditUser.cshtml" />
     <Content Include="Views\Home\Basket.cshtml" />
+    <Content Include="Views\Home\ProdQuantity.cshtml" />
+    <Content Include="Views\Home\BuyProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

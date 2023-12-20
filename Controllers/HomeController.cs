@@ -69,6 +69,17 @@ namespace WebApplication1.Controllers
             }
             return PartialView("ProdPrice", message);
         }
+        [ChildActionOnly]
+        public ActionResult ProdQuantity(long product_id, Guid check_id)
+        {
+            string message = "";
+            using (var db = new supermarketEntities())
+            {
+                int pr = db.product_in_check.Where(x => x.product_id == product_id && x.check_id == check_id).FirstOrDefault().quantity;
+                message = $"{pr}";
+            }
+            return PartialView("ProdQuantity", message);
+        }
         [HttpGet]
         public ActionResult Register() => View();
         [HttpPost]
@@ -584,12 +595,12 @@ namespace WebApplication1.Controllers
                     UserID = us.id;
                     discount = (double)db.discount_card.Where(x => x.card_id == us.card_id).FirstOrDefault().sale;
                 }
-
                 var purItem = db.product_in_check.Where(x => x.check_id == guid).ToList();
-                foreach (var pui in purItem)
+                foreach (var pic in purItem)
                 {
-                    sum += db.price.Where(x => x.date <= DateTime.Now && x.product_id == pui.product_id)
-                        .OrderByDescending(x => x.date).FirstOrDefault().price1 * discount;
+                    var quan = db.product_in_check.Where(x => x.check_id == guid && x.product_id == pic.product_id).FirstOrDefault().quantity;
+                    sum += db.price.Where(x => x.date <= DateTime.Now && x.product_id == pic.product_id)
+                        .OrderByDescending(x => x.date).FirstOrDefault().price1 * discount * quan;
                 }
 
                 var cheque = db.check.Find(guid);

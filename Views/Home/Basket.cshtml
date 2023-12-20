@@ -12,8 +12,7 @@
             {
                 <tr class="text-center">
                     <td>
-                        @product.product_name
-                        @{ Html.RenderAction("ProdPrice", new { product_id = product.product_id }); }
+                        @product.product_name @{ Html.RenderAction("ProdPrice", new { product_id = product.product_id }); } (@{ Html.RenderAction("ProdQuantity", new { product_id = product.product_id, check_id = Model.check_id });})
                         @using (Html.BeginForm("RemoveFromBasket", "Home"))
                         {
                             @Html.Hidden("checkId", Model.check_id)
